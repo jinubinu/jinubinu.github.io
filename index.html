@@ -1,7 +1,41 @@
 <!DOCTYPE html>
 <html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-</body>
+  <head>
+    <title>Google Login Example</title>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+  </head>
+  <body>
+    <h1>Google Login Example</h1>
+    <button onclick="login()">Login with Google</button>
+    <script>
+      var firebaseConfig = {
+        // Add your Firebase project configuration here
+        apiKey: "AIzaSyAKiustKRQCMCBy1JcMc5De4u9AyGfYRn4",
+        authDomain: "jinubinu.github.io",
+        projectId: "forum-cf0e0",
+        storageBucket: "YOUR_STORAGE_BUCKET",
+        messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+        appId: "YOUR_APP_ID",
+        measurementId: "YOUR_MEASUREMENT_ID",
+      };
+      firebase.initializeApp(firebaseConfig);
+
+      function login() {
+        var provider = new firebase.auth.GoogleAuthProvider();
+        firebase
+          .auth()
+          .signInWithPopup(provider)
+          .then(function (result) {
+            // Handle successful login
+            console.log(result.user);
+          })
+          .catch(function (error) {
+            // Handle login error
+            console.log(error.message);
+          });
+      }
+    </script>
+  </body>
 </html>
